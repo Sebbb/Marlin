@@ -1152,12 +1152,12 @@
 // UPDATE, NOTE: Used for 3-point quick adjustment prior to every print. 
 //               Set to values less close to CR10-s build-plate edges
 #if ENABLED(AUTO_BED_LEVELING_3POINT) || ENABLED(AUTO_BED_LEVELING_UBL)
-  #define PROBE_PT_1_X 35
-  #define PROBE_PT_1_Y 270
-  #define PROBE_PT_2_X 30
-  #define PROBE_PT_2_Y 35
-  #define PROBE_PT_3_X 255
-  #define PROBE_PT_3_Y 55
+  #define PROBE_PT_1_X 20
+  #define PROBE_PT_1_Y 260
+  #define PROBE_PT_2_X 20
+  #define PROBE_PT_2_Y 20
+  #define PROBE_PT_3_X 260
+  #define PROBE_PT_3_Y 20
 #endif
 
 /**
@@ -1175,8 +1175,8 @@
 //#define LEVEL_BED_CORNERS // UPDATE
 
 #if ENABLED(LEVEL_BED_CORNERS)
-  #define LEVEL_CORNERS_INSET 30    // UPDATE, NOTE Inset set so that CR10 clamps are not hit. (mm) An inset for corner leveling
-  #define LEVEL_CORNERS_Z_HOP  4.0  // (mm) Move nozzle up before moving between corners
+  #define LEVEL_CORNERS_INSET 25    // UPDATE, NOTE Inset set so that CR10 clamps are not hit. (mm) An inset for corner leveling
+  #define LEVEL_CORNERS_Z_HOP  3.0  // (mm) Move nozzle up before moving between corners
 
   //#define LEVEL_CENTER_TOO        // Move to the center after the last corner
 #endif
