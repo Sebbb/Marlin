@@ -857,7 +857,7 @@
 // The number of probes to perform at each point.
 //   Set to 2 for a fast/slow probe, using the second probe result.
 //   Set to 3 or more for slow probes, averaging the results.
-//#define MULTIPLE_PROBING 2
+#define MULTIPLE_PROBING 3
 
 /**
  * Z probes require clearance when deploying, stowing, and moving between
@@ -1121,8 +1121,8 @@
 
   //#define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
 
-  #define MESH_INSET 25              // UPDATED. Set Mesh bounds as an inset region of the bed
-  #define GRID_MAX_POINTS_X 8        // Don't use more than 15 points per axis, implementation limited.
+  #define MESH_INSET 30              // UPDATED. Set Mesh bounds as an inset region of the bed
+  #define GRID_MAX_POINTS_X 4    // Seb: worked fine with 5 here    // Don't use more than 15 points per axis, implementation limited.
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   #define UBL_MESH_EDIT_MOVES_Z     // Sophisticated users prefer no movement of nozzle
@@ -1152,12 +1152,12 @@
 // UPDATE, NOTE: Used for 3-point quick adjustment prior to every print. 
 //               Set to values less close to CR10-s build-plate edges
 #if ENABLED(AUTO_BED_LEVELING_3POINT) || ENABLED(AUTO_BED_LEVELING_UBL)
-  #define PROBE_PT_1_X 20
-  #define PROBE_PT_1_Y 260
-  #define PROBE_PT_2_X 20
-  #define PROBE_PT_2_Y 20
-  #define PROBE_PT_3_X 260
-  #define PROBE_PT_3_Y 20
+  #define PROBE_PT_1_X 30
+  #define PROBE_PT_1_Y 270
+  #define PROBE_PT_2_X 30
+  #define PROBE_PT_2_Y 30
+  #define PROBE_PT_3_X 270
+  #define PROBE_PT_3_Y 30
 #endif
 
 /**
