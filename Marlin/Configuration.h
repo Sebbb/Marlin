@@ -179,8 +179,8 @@
   #define MOTHERBOARD BOARD_RAMPS_14_EFB
   #define PIN_EXP1 65 // A11
   #define PIN_EXP2 66 // A12
-  #define PIN_EXP3 11 // SERVO0_PIN
-  #define PIN_EXP4 12 // PS_ON_PIN
+  #define PIN_EXP3 11 // SERVO0_PIN, D11
+  #define PIN_EXP4 12 // PS_ON_PIN, D12
 #endif
 
 // Optional custom name for your RepStrap or other custom machine
@@ -791,7 +791,7 @@
  */
 // UPDATED
 #define BLTOUCH
-#define SERVO0_PIN 29  
+#define Z_PROBE_SERVO_NR 0   // Defaults to SERVO 0 connector.
 #define Z_SAFE_HOMING
 
 /**
@@ -1982,7 +1982,7 @@
  * Leave undefined or set to 0 to entirely disable the servo subsystem.
  */
 //#define NUM_SERVOS 3 // Servo index starts with 0 for M280 command
-//#define NUM_SERVOS 1 // UPDATED
+#define NUM_SERVOS 1 // UPDATED
 
 // Delay (in milliseconds) before the next move will start, to give the servo time to reach its target angle.
 // 300ms is a good value but you can try less delay.
