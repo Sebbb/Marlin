@@ -808,6 +808,17 @@
 //#define PROBING_FANS_OFF          // Turn fans off when probing
 //#define DELAY_BEFORE_PROBING 200  // (ms) To prevent vibrations from triggering piezo sensors
 
+
+#define KILL_PIN          65  // A11 (A eleven, Servopin row 4)
+
+
+#define SPINDLE_LASER_ENABLE_PIN 12   // digital pin
+#define SPINDLE_LASER_PWM_PIN    7   // digital pin - MUST BE HARDWARE PWM - Seb: right pins on the green MOSFET connector
+//#define SPINDLE_DIR_PIN          -1   // digital pin
+
+
+
+
 // A probe that is deployed and stowed with a solenoid pin (SOL1_PIN)
 //#define SOLENOID_PROBE
 
@@ -1493,7 +1504,7 @@
  * you must uncomment the following option or it won't work.
  *
  */
-#define SDSUPPORT   // UPDATED
+//#define SDSUPPORT   // UPDATED
 
 /**
  * SD CARD: SPI SPEED

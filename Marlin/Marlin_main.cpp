@@ -14949,7 +14949,7 @@ void manage_inactivity(const bool ignore_stepper_queue/*=false*/) {
     // key kill key press
     // -------------------------------------------------------------------------------
     static int killCount = 0;   // make the inactivity button a bit less responsive
-    const int KILL_DELAY = 750;
+    const int KILL_DELAY = 50;
     if (!READ(KILL_PIN))
       killCount++;
     else if (killCount > 0)
@@ -15145,6 +15145,12 @@ void kill(const char* lcd_msg) {
   SERIAL_ERROR_START();
   SERIAL_ERRORLNPGM(MSG_ERR_KILLED);
 
+  // disable spindle
+  WRITE(SPINDLE_LASER_ENABLE_PIN, !SPINDLE_LASER_ENABLE_INVERT);
+  #if ENABLED(SPINDLE_LASER_PWM)
+    analogWrite(SPINDLE_LASER_PWM_PIN, SPINDLE_LASER_PWM_INVERT ? 255 : 0);
+  #endif
+
   thermalManager.disable_all_heaters();
   disable_all_steppers();
 
@@ -15167,6 +15173,7 @@ void kill(const char* lcd_msg) {
   #if HAS_POWER_SWITCH
     PSU_OFF();
   #endif
+
 
   suicide();
   while (1) {
