@@ -179,8 +179,8 @@
   #define MOTHERBOARD BOARD_RAMPS_14_EFB
   #define PIN_EXP1 65 // A11
   #define PIN_EXP2 66 // A12
-  #define PIN_EXP3 11 // SERVO0_PIN
-  #define PIN_EXP4 12 // PS_ON_PIN
+  #define PIN_EXP3 11 // SERVO0_PIN, D11
+  #define PIN_EXP4 12 // PS_ON_PIN, D12
 #endif
 
 // Optional custom name for your RepStrap or other custom machine
@@ -791,7 +791,7 @@
  */
 // UPDATED
 //#define BLTOUCH
-//#define SERVO0_PIN 29  
+//#define Z_PROBE_SERVO_NR 0   // Defaults to SERVO 0 connector.
 #define Z_SAFE_HOMING
 
 /**
@@ -857,7 +857,7 @@
 // The number of probes to perform at each point.
 //   Set to 2 for a fast/slow probe, using the second probe result.
 //   Set to 3 or more for slow probes, averaging the results.
-//#define MULTIPLE_PROBING 2
+#define MULTIPLE_PROBING 3
 
 /**
  * Z probes require clearance when deploying, stowing, and moving between
@@ -948,7 +948,7 @@
 #define X_MIN_POS 0
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
-#define X_MAX_POS X_BED_SIZE
+#define X_MAX_POS X_BED_SIZE+20
 #define Y_MAX_POS Y_BED_SIZE
 #define Z_MAX_POS 400		// UPDATED
 
@@ -1121,8 +1121,8 @@
 
   //#define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
 
-  #define MESH_INSET 35              // UPDATED. Set Mesh bounds as an inset region of the bed
-  #define GRID_MAX_POINTS_X 7        // Don't use more than 15 points per axis, implementation limited.
+  #define MESH_INSET 30              // UPDATED. Set Mesh bounds as an inset region of the bed
+  #define GRID_MAX_POINTS_X 4    // Seb: worked fine with 5 here    // Don't use more than 15 points per axis, implementation limited.
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   #define UBL_MESH_EDIT_MOVES_Z     // Sophisticated users prefer no movement of nozzle
@@ -1152,12 +1152,12 @@
 // UPDATE, NOTE: Used for 3-point quick adjustment prior to every print. 
 //               Set to values less close to CR10-s build-plate edges
 #if ENABLED(AUTO_BED_LEVELING_3POINT) || ENABLED(AUTO_BED_LEVELING_UBL)
-  #define PROBE_PT_1_X 35
+  #define PROBE_PT_1_X 30
   #define PROBE_PT_1_Y 270
   #define PROBE_PT_2_X 30
-  #define PROBE_PT_2_Y 35
-  #define PROBE_PT_3_X 255
-  #define PROBE_PT_3_Y 55
+  #define PROBE_PT_2_Y 30
+  #define PROBE_PT_3_X 270
+  #define PROBE_PT_3_Y 30
 #endif
 
 /**
@@ -1175,8 +1175,8 @@
 //#define LEVEL_BED_CORNERS // UPDATE
 
 #if ENABLED(LEVEL_BED_CORNERS)
-  #define LEVEL_CORNERS_INSET 30    // UPDATE, NOTE Inset set so that CR10 clamps are not hit. (mm) An inset for corner leveling
-  #define LEVEL_CORNERS_Z_HOP  4.0  // (mm) Move nozzle up before moving between corners
+  #define LEVEL_CORNERS_INSET 25    // UPDATE, NOTE Inset set so that CR10 clamps are not hit. (mm) An inset for corner leveling
+  #define LEVEL_CORNERS_Z_HOP  3.0  // (mm) Move nozzle up before moving between corners
 
   //#define LEVEL_CENTER_TOO        // Move to the center after the last corner
 #endif
@@ -1982,7 +1982,7 @@
  * Leave undefined or set to 0 to entirely disable the servo subsystem.
  */
 //#define NUM_SERVOS 3 // Servo index starts with 0 for M280 command
-//#define NUM_SERVOS 1 // UPDATED
+#define NUM_SERVOS 1 // UPDATED
 
 // Delay (in milliseconds) before the next move will start, to give the servo time to reach its target angle.
 // 300ms is a good value but you can try less delay.
