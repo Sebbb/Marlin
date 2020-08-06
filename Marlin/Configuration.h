@@ -127,6 +127,11 @@
 // build by the user have been successfully uploaded into firmware.
 */
 
+
+// Optional custom name for your RepStrap or other custom machine
+// Displayed in the LCD "Ready" message
+#define CUSTOM_MACHINE_NAME "CR-10S CNC v2"  // UPDATED
+
 #define STRING_CONFIG_H_AUTHOR "Sebastian Roesner, CR-10S" // Who made the changes.
 
 #define SHOW_BOOTSCREEN                       // UPDATED
@@ -134,7 +139,7 @@
 // bootscreen code: ultralcd_impl_DOGM.h
 
 #define STRING_SPLASH_LINE1 SHORT_BUILD_VERSION // will be shown during bootup in line 1
-#define STRING_SPLASH_LINE2 "CNC - Seb V1" // will be shown during bootup in line 2
+#define STRING_SPLASH_LINE2 CUSTOM_MACHINE_NAME // will be shown during bootup in line 2
 
 /**
  * *** VENDORS PLEASE READ ***
@@ -189,10 +194,6 @@
   #define PIN_EXP4 12 // PS_ON_PIN, D12
 #endif
 
-// Optional custom name for your RepStrap or other custom machine
-// Displayed in the LCD "Ready" message
-#define CUSTOM_MACHINE_NAME "CR-10CNCV1"  // UPDATED
-
 // Define this to set a unique identifier for this printer, (Used by some programs to differentiate between machines)
 // You can use an online service to generate a random UUID. (eg http://www.uuidgenerator.net/version4)
 //#define MACHINE_UUID "00000000-0000-0000-0000-000000000000"
@@ -202,12 +203,6 @@
 // This defines the number of extruders
 // :[1, 2, 3, 4, 5]
 #define EXTRUDERS 1
-
-
-
-#define FAN_ANIM_FRAMES 2
-
-
 
 // Generally expected filament diameter (1.75, 2.85, 3.0, ...). Used for Volumetric, Filament Width Sensor, etc.
 
