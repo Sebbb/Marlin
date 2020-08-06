@@ -1221,8 +1221,8 @@ void lcd_quick_feedback(const bool clear_buttons) {
       #endif
 
       // Draw a representation of the nozzle
-      if (PAGE_CONTAINS(3, 16))  u8g.drawBitmapP(nozzle + 6, 4 - dir, 2, 12, nozzle_bmp);
-      if (PAGE_CONTAINS(20, 20)) u8g.drawBitmapP(nozzle + 0, 20, 3, 1, offset_bedline_bmp);
+//      if (PAGE_CONTAINS(3, 16))  u8g.drawBitmapP(nozzle + 6, 4 - dir, 2, 12, nozzle_bmp);
+//      if (PAGE_CONTAINS(20, 20)) u8g.drawBitmapP(nozzle + 0, 20, 3, 1, offset_bedline_bmp);
 
       // Draw cw/ccw indicator and up/down arrows.
       if (PAGE_CONTAINS(47, 62)) {
@@ -1357,7 +1357,7 @@ void lcd_quick_feedback(const bool clear_buttons) {
   /**
    * Watch temperature callbacks
    */
-  #if HAS_TEMP_HOTEND
+  #if 0 // HAS_TEMP_HOTEND
     #if WATCH_HOTENDS
       #define _WATCH_FUNC(N) thermalManager.start_watching_heater(N)
     #else
@@ -1445,7 +1445,8 @@ void lcd_quick_feedback(const bool clear_buttons) {
     // Nozzle:
     // Nozzle [1-4]:
     //
-    #if HOTENDS == 1
+    #if 1
+    #elif HOTENDS == 1
       MENU_MULTIPLIER_ITEM_EDIT_CALLBACK(int3, MSG_NOZZLE, &thermalManager.target_temperature[0], 0, HEATER_0_MAXTEMP - 15, watch_temp_callback_E0);
     #else // HOTENDS > 1
       MENU_MULTIPLIER_ITEM_EDIT_CALLBACK(int3, MSG_NOZZLE MSG_N1, &thermalManager.target_temperature[0], 0, HEATER_0_MAXTEMP - 15, watch_temp_callback_E0);
@@ -1496,7 +1497,8 @@ void lcd_quick_feedback(const bool clear_buttons) {
     // Flow:
     // Flow [1-5]:
     //
-    #if EXTRUDERS == 1
+#if 1
+    #elif EXTRUDERS == 1
       MENU_ITEM_EDIT_CALLBACK(int3, MSG_FLOW, &planner.flow_percentage[0], 10, 999, _lcd_refresh_e_factor_0);
     #else // EXTRUDERS > 1
       MENU_ITEM_EDIT_CALLBACK(int3, MSG_FLOW, &planner.flow_percentage[active_extruder], 10, 999, _lcd_refresh_e_factor);
@@ -1533,7 +1535,7 @@ void lcd_quick_feedback(const bool clear_buttons) {
     //
     // Change filament
     //
-    #if ENABLED(ADVANCED_PAUSE_FEATURE)
+    #if 0 // ENABLED(ADVANCED_PAUSE_FEATURE)
       #if E_STEPPERS == 1 && !ENABLED(FILAMENT_LOAD_UNLOAD_GCODES)
         if (thermalManager.targetHotEnoughToExtrude(active_extruder))
           MENU_ITEM(gcode, MSG_FILAMENTCHANGE, PSTR("M600 B0"));
@@ -1619,7 +1621,7 @@ void lcd_quick_feedback(const bool clear_buttons) {
     lcd_return_to_status();
   }
 
-  #if HAS_TEMP_HOTEND
+  #if 0 //HAS_TEMP_HOTEND
     void lcd_preheat_m1_e0_only() { _lcd_preheat(0, lcd_preheat_hotend_temp[0], -1, lcd_preheat_fan_speed[0]); }
     void lcd_preheat_m2_e0_only() { _lcd_preheat(0, lcd_preheat_hotend_temp[1], -1, lcd_preheat_fan_speed[1]); }
     #if HAS_HEATED_BED
@@ -1628,7 +1630,8 @@ void lcd_quick_feedback(const bool clear_buttons) {
     #endif
   #endif
 
-  #if HOTENDS > 1
+  #if 1
+  #elif HOTENDS > 1
     void lcd_preheat_m1_e1_only() { _lcd_preheat(1, lcd_preheat_hotend_temp[0], -1, lcd_preheat_fan_speed[0]); }
     void lcd_preheat_m2_e1_only() { _lcd_preheat(1, lcd_preheat_hotend_temp[1], -1, lcd_preheat_fan_speed[1]); }
     #if HAS_HEATED_BED
@@ -1706,7 +1709,7 @@ void lcd_quick_feedback(const bool clear_buttons) {
     void lcd_preheat_m2_bedonly() { _lcd_preheat(0, 0, lcd_preheat_bed_temp[1], lcd_preheat_fan_speed[1]); }
   #endif
 
-  #if HAS_TEMP_HOTEND || HAS_HEATED_BED
+  #if 0 // HAS_TEMP_HOTEND || HAS_HEATED_BED
 
     void lcd_preheat_m1_menu() {
       START_MENU();
@@ -2766,7 +2769,7 @@ void lcd_quick_feedback(const bool clear_buttons) {
     //
     // Change filament
     //
-    #if ENABLED(ADVANCED_PAUSE_FEATURE)
+    #if 0 // ENABLED(ADVANCED_PAUSE_FEATURE)
       if (!IS_SD_FILE_OPEN()) {
         #if E_STEPPERS == 1 && !ENABLED(FILAMENT_LOAD_UNLOAD_GCODES)
           if (thermalManager.targetHotEnoughToExtrude(active_extruder))
@@ -2779,7 +2782,7 @@ void lcd_quick_feedback(const bool clear_buttons) {
       }
     #endif // ADVANCED_PAUSE_FEATURE
 
-    #if HAS_TEMP_HOTEND
+    #if 0 // HAS_TEMP_HOTEND
 
       //
       // Cooldown
@@ -3501,7 +3504,8 @@ void lcd_quick_feedback(const bool clear_buttons) {
     // Nozzle:
     // Nozzle [1-5]:
     //
-    #if HOTENDS == 1
+    #if 1
+    #elif HOTENDS == 1
       MENU_MULTIPLIER_ITEM_EDIT_CALLBACK(int3, MSG_NOZZLE, &thermalManager.target_temperature[0], 0, HEATER_0_MAXTEMP - 15, watch_temp_callback_E0);
     #else // HOTENDS > 1
       MENU_MULTIPLIER_ITEM_EDIT_CALLBACK(int3, MSG_NOZZLE MSG_N1, &thermalManager.target_temperature[0], 0, HEATER_0_MAXTEMP - 15, watch_temp_callback_E0);
@@ -3551,7 +3555,7 @@ void lcd_quick_feedback(const bool clear_buttons) {
     //
     // Autotemp, Min, Max, Fact
     //
-    #if ENABLED(AUTOTEMP) && HAS_TEMP_HOTEND
+    #if ENABLED(AUTOTEMP) && 0 // HAS_TEMP_HOTEND
       MENU_ITEM_EDIT(bool, MSG_AUTOTEMP, &planner.autotemp_enabled);
       MENU_ITEM_EDIT(float3, MSG_MIN, &planner.autotemp_min, 0, float(HEATER_0_MAXTEMP) - 15);
       MENU_ITEM_EDIT(float3, MSG_MAX, &planner.autotemp_max, 0, float(HEATER_0_MAXTEMP) - 15);
@@ -3609,7 +3613,7 @@ void lcd_quick_feedback(const bool clear_buttons) {
 
     #endif // PIDTEMP
 
-    #if DISABLED(SLIM_LCD_MENUS)
+    #if 0 // DISABLED(SLIM_LCD_MENUS)
       //
       // Preheat Material 1 conf
       //
@@ -3646,7 +3650,7 @@ void lcd_quick_feedback(const bool clear_buttons) {
       START_MENU();
       MENU_BACK(MSG_TEMPERATURE);
       MENU_ITEM_EDIT(int3, MSG_FAN_SPEED, &lcd_preheat_fan_speed[material], 0, 255);
-      #if HAS_TEMP_HOTEND
+      #if 0 // HAS_TEMP_HOTEND
         MENU_ITEM_EDIT(int3, MSG_NOZZLE, &lcd_preheat_hotend_temp[material], MINTEMP_ALL, MAXTEMP_ALL - 15);
       #endif
       #if HAS_HEATED_BED

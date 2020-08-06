@@ -497,6 +497,8 @@ void report_current_position();
   #define KEEPALIVE_STATE(n) NOOP
 #endif
 
+extern int16_t cncSpeed;
+
 #if FAN_COUNT > 0
   extern int16_t fanSpeeds[FAN_COUNT];
   #if ENABLED(EXTRA_FAN_SPEED)

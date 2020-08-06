@@ -205,7 +205,7 @@ static void lcd_implementation_status_screen() {
     static uint8_t fan_frame;
     if (old_blink != blink) {
       old_blink = blink;
-      if (!fanSpeeds[0] || ++fan_frame >= FAN_ANIM_FRAMES) fan_frame = 0;
+      if (!cncSpeed || ++fan_frame >= FAN_ANIM_FRAMES) fan_frame = 0;
     }
   #endif
 
@@ -243,7 +243,7 @@ static void lcd_implementation_status_screen() {
             fan_frame == 3 ? status_screen3_bmp :
           #endif
         #else
-          blink && fanSpeeds[0] ? status_screen1_bmp :
+          blink && cncSpeed ? status_screen1_bmp :
         #endif
       #endif
       status_screen0_bmp
@@ -257,17 +257,17 @@ static void lcd_implementation_status_screen() {
 
   if (PAGE_UNDER(28)) {
     // Extruders
-    HOTEND_LOOP() _draw_heater_status(STATUS_SCREEN_HOTEND_TEXT_X(e), e, blink);
+    // HOTEND_LOOP() _draw_heater_status(STATUS_SCREEN_HOTEND_TEXT_X(e), e, blink);
 
     // Heated bed
-    #if HOTENDS < 4 && HAS_HEATED_BED
+    #if 0 // HOTENDS < 4 && HAS_HEATED_BED
       _draw_heater_status(STATUS_SCREEN_BED_TEXT_X, -1, blink);
     #endif
 
     #if HAS_FAN0
       if (PAGE_CONTAINS(STATUS_SCREEN_FAN_TEXT_Y - 7, STATUS_SCREEN_FAN_TEXT_Y)) {
         // Fan
-        const int16_t per = ((fanSpeeds[0] + 1) * 100) / 256;
+        const int16_t per = ((cncSpeed + 1) * 100) / 256;
         if (per) {
           u8g.setPrintPos(STATUS_SCREEN_FAN_TEXT_X, STATUS_SCREEN_FAN_TEXT_Y);
           lcd_print(itostr3(per));

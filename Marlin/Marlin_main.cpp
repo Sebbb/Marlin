@@ -490,6 +490,8 @@ float soft_endstop_min[XYZ] = { X_MIN_BED, Y_MIN_BED, Z_MIN_POS },
   #endif
 #endif
 
+int16_t cncSpeed = { 0 };
+
 #if FAN_COUNT > 0
   int16_t fanSpeeds[FAN_COUNT] = { 0 };
   #if ENABLED(EXTRA_FAN_SPEED)
@@ -7011,6 +7013,7 @@ void report_xyz_from_stepper_position() {
   inline void ocr_val_mode() {
     uint8_t spindle_laser_power = parser.value_byte();
     WRITE(SPINDLE_LASER_ENABLE_PIN, SPINDLE_LASER_ENABLE_INVERT); // turn spindle on (active low)
+    cncSpeed = spindle_laser_power;
     if (SPINDLE_LASER_PWM_INVERT) spindle_laser_power = 255 - spindle_laser_power;
     analogWrite(SPINDLE_LASER_PWM_PIN, spindle_laser_power);
   }
@@ -7042,6 +7045,7 @@ void report_xyz_from_stepper_position() {
         if (spindle_laser_power == 0) {
           WRITE(SPINDLE_LASER_ENABLE_PIN, !SPINDLE_LASER_ENABLE_INVERT);                                    // turn spindle off (active low)
           analogWrite(SPINDLE_LASER_PWM_PIN, SPINDLE_LASER_PWM_INVERT ? 255 : 0);                           // only write low byte
+	  cncSpeed=0;
           delay_for_power_down();
         }
         else {
@@ -7054,6 +7058,7 @@ void report_xyz_from_stepper_position() {
           if (SPINDLE_LASER_PWM_INVERT) ocr_val = 255 - ocr_val;
           WRITE(SPINDLE_LASER_ENABLE_PIN, SPINDLE_LASER_ENABLE_INVERT);                                     // turn spindle on (active low)
           analogWrite(SPINDLE_LASER_PWM_PIN, ocr_val & 0xFF);                                               // only write low byte
+	  cncSpeed = ocr_val & 0xFF;
           delay_for_power_up();
         }
       }
@@ -7072,6 +7077,7 @@ void report_xyz_from_stepper_position() {
     #if ENABLED(SPINDLE_LASER_PWM)
       analogWrite(SPINDLE_LASER_PWM_PIN, SPINDLE_LASER_PWM_INVERT ? 255 : 0);
     #endif
+    cncSpeed=0;
     delay_for_power_down();
   }
 
@@ -8582,6 +8588,9 @@ inline void gcode_M109() {
 
   if (get_target_extruder_from_command(109)) return;
   if (DEBUGGING(DRYRUN)) return;
+#if HAS_TEMP_HOTEND
+  return;
+#endif
 
   #if ENABLED(SINGLENOZZLE)
     if (target_extruder != active_extruder) return;
@@ -8665,7 +8674,9 @@ inline void gcode_M109() {
     now = millis();
     if (ELAPSED(now, next_temp_ms)) { //Print temp & remaining time every 1s while waiting
       next_temp_ms = now + 1000UL;
+#if HAS_TEMP_HOTEND
       thermalManager.print_heaterstates();
+#endif
       #if TEMP_RESIDENCY_TIME > 0
         SERIAL_PROTOCOLPGM(" W:");
         if (residency_start_ms)

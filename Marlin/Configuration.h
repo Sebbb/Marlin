@@ -125,10 +125,16 @@
 // User-specified version info of this build to display in [Pronterface, etc] terminal window during
 // startup. Implementation of an idea by Prof Braino to inform user that any changes made to this
 // build by the user have been successfully uploaded into firmware.
-#define STRING_CONFIG_H_AUTHOR "Thijs Elenbaas, CR-10S" // Who made the changes.
-//#define SHOW_BOOTSCREEN                       // UPDATED
+*/
+
+#define STRING_CONFIG_H_AUTHOR "Sebastian Roesner, CR-10S" // Who made the changes.
+
+#define SHOW_BOOTSCREEN                       // UPDATED
+#define BOOTSCREEN_TIMEOUT 1000
+// bootscreen code: ultralcd_impl_DOGM.h
+
 #define STRING_SPLASH_LINE1 SHORT_BUILD_VERSION // will be shown during bootup in line 1
-#define STRING_SPLASH_LINE2 WEBSITE_URL         // will be shown during bootup in line 2
+#define STRING_SPLASH_LINE2 "CNC - Seb V1" // will be shown during bootup in line 2
 
 /**
  * *** VENDORS PLEASE READ ***
@@ -196,6 +202,12 @@
 // This defines the number of extruders
 // :[1, 2, 3, 4, 5]
 #define EXTRUDERS 1
+
+
+
+#define FAN_ANIM_FRAMES 2
+
+
 
 // Generally expected filament diameter (1.75, 2.85, 3.0, ...). Used for Volumetric, Filament Width Sensor, etc.
 
