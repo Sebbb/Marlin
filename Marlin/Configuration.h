@@ -130,7 +130,7 @@
 
 // Optional custom name for your RepStrap or other custom machine
 // Displayed in the LCD "Ready" message
-#define CUSTOM_MACHINE_NAME "CR-10S 3DPrint v1"  // UPDATED
+#define CUSTOM_MACHINE_NAME "CR-10S Print v1"  // UPDATED
 
 #define STRING_CONFIG_H_AUTHOR "Sebastian Roesner, CR-10S" // Who made the changes.
 
@@ -955,7 +955,7 @@
 #define X_MIN_POS 0
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
-#define X_MAX_POS X_BED_SIZE+20
+#define X_MAX_POS X_BED_SIZE+15
 #define Y_MAX_POS Y_BED_SIZE
 #define Z_MAX_POS 400		// UPDATED
 
