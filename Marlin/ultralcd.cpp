@@ -908,13 +908,13 @@ void lcd_quick_feedback(const bool clear_buttons) {
       #endif
 
       // Restore print cooling fan speeds
-      for (uint8_t i = 0; i < FAN_COUNT; i++) {
-        int16_t f = job_recovery_info.fanSpeeds[i];
-        if (f) {
-          sprintf_P(cmd, PSTR("M106 P%i S%i"), i, f);
-          enqueue_and_echo_command(cmd);
-        }
-      }
+      // for (uint8_t i = 0; i < FAN_COUNT; i++) {
+      //   int16_t f = job_recovery_info.fanSpeeds[i];
+      //   if (f) {
+      //     sprintf_P(cmd, PSTR("M106 P%i S%i"), i, f);
+      //     enqueue_and_echo_command(cmd);
+      //   }
+      // }
 
       // Start draining the job recovery command queue
       job_recovery_phase = JOB_RECOVERY_YES;

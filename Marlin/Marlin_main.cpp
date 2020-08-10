@@ -7017,7 +7017,7 @@ void report_xyz_from_stepper_position() {
 
   inline void gcode_M3_M4(bool is_M3) {
 
-    planner.synchronize();   // wait until previous movement commands (G0/G0/G2/G3) have completed before playing with the spindle
+    planner.synchronize();   // wait until previous movement commands (G0/G1/G2/G3) have completed before playing with the spindle
     #if SPINDLE_DIR_CHANGE
       const bool rotation_dir = (is_M3 && !SPINDLE_INVERT_DIR || !is_M3 && SPINDLE_INVERT_DIR) ? HIGH : LOW;
       if (SPINDLE_STOP_ON_DIR_CHANGE \
@@ -7042,7 +7042,7 @@ void report_xyz_from_stepper_position() {
         if (spindle_laser_power == 0) {
           WRITE(SPINDLE_LASER_ENABLE_PIN, !SPINDLE_LASER_ENABLE_INVERT);                                    // turn spindle off (active low)
           analogWrite(SPINDLE_LASER_PWM_PIN, SPINDLE_LASER_PWM_INVERT ? 255 : 0);                           // only write low byte
-          delay_for_power_down();
+          //delay_for_power_down();
         }
         else {
           int16_t ocr_val = (spindle_laser_power - (SPEED_POWER_INTERCEPT)) * (1.0f / (SPEED_POWER_SLOPE)); // convert RPM to PWM duty cycle
@@ -7054,7 +7054,7 @@ void report_xyz_from_stepper_position() {
           if (SPINDLE_LASER_PWM_INVERT) ocr_val = 255 - ocr_val;
           WRITE(SPINDLE_LASER_ENABLE_PIN, SPINDLE_LASER_ENABLE_INVERT);                                     // turn spindle on (active low)
           analogWrite(SPINDLE_LASER_PWM_PIN, ocr_val & 0xFF);                                               // only write low byte
-          delay_for_power_up();
+          //delay_for_power_up();
         }
       }
     #else
