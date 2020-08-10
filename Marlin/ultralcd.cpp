@@ -2766,7 +2766,7 @@ void lcd_quick_feedback(const bool clear_buttons) {
     //
     // Change filament
     //
-    #if ENABLED(ADVANCED_PAUSE_FEATURE)
+    #if 0 // ENABLED(ADVANCED_PAUSE_FEATURE)
       if (!IS_SD_FILE_OPEN()) {
         #if E_STEPPERS == 1 && !ENABLED(FILAMENT_LOAD_UNLOAD_GCODES)
           if (thermalManager.targetHotEnoughToExtrude(active_extruder))
@@ -3609,7 +3609,7 @@ void lcd_quick_feedback(const bool clear_buttons) {
 
     #endif // PIDTEMP
 
-    #if DISABLED(SLIM_LCD_MENUS)
+    #if 0 // DISABLED(SLIM_LCD_MENUS)
       //
       // Preheat Material 1 conf
       //
@@ -3646,7 +3646,7 @@ void lcd_quick_feedback(const bool clear_buttons) {
       START_MENU();
       MENU_BACK(MSG_TEMPERATURE);
       MENU_ITEM_EDIT(int3, MSG_FAN_SPEED, &lcd_preheat_fan_speed[material], 0, 255);
-      #if HAS_TEMP_HOTEND
+      #if 0 // HAS_TEMP_HOTEND
         MENU_ITEM_EDIT(int3, MSG_NOZZLE, &lcd_preheat_hotend_temp[material], MINTEMP_ALL, MAXTEMP_ALL - 15);
       #endif
       #if HAS_HEATED_BED

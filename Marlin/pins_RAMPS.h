@@ -240,8 +240,8 @@
 // Temperature Sensors
 //
 #define TEMP_0_PIN         13   // Analog Input
-#define TEMP_1_PIN         15   // Analog Input
-#define TEMP_BED_PIN       14   // Analog Input
+// #define TEMP_1_PIN         15   // Analog Input
+// #define TEMP_BED_PIN       14   // Analog Input
 
 // SPI for Max6675 or Max31855 Thermocouple
 #if DISABLED(SDSUPPORT)
@@ -283,7 +283,8 @@
   #define RAMPS_D10_PIN    10
 #endif
 
-#define HEATER_0_PIN       RAMPS_D10_PIN
+//#define HEATER_0_PIN       RAMPS_D10_PIN
+#define HEATER_0_PIN       12 // not used here, TODO: check if 48V power supply remains off with this value.......
 
 #if ENABLED(IS_RAMPS_EFB)                      // Hotend, Fan, Bed
   #define HEATER_BED_PIN   RAMPS_D8_PIN
@@ -303,17 +304,17 @@
   #endif
 #endif
 
-#ifndef FAN_PIN
-  #if ENABLED(IS_RAMPS_EFB) || ENABLED(IS_RAMPS_EFF)  // Hotend, Fan, Bed or Hotend, Fan, Fan
-    #define FAN_PIN        RAMPS_D9_PIN
-  #elif ENABLED(IS_RAMPS_EEF) || ENABLED(IS_RAMPS_SF) // Hotend, Hotend, Fan or Spindle, Fan
-    #define FAN_PIN        RAMPS_D8_PIN
-  #elif ENABLED(IS_RAMPS_EEB)                         // Hotend, Hotend, Bed
-    #define FAN_PIN         4   // IO pin. Buffer needed
-  #else                                               // Non-specific are "EFB" (i.e., "EFBF" or "EFBE")
-    #define FAN_PIN        RAMPS_D9_PIN
-  #endif
-#endif
+//#ifndef FAN_PIN
+//  #if ENABLED(IS_RAMPS_EFB) || ENABLED(IS_RAMPS_EFF)  // Hotend, Fan, Bed or Hotend, Fan, Fan
+//    #define FAN_PIN        RAMPS_D9_PIN
+//  #elif ENABLED(IS_RAMPS_EEF) || ENABLED(IS_RAMPS_SF) // Hotend, Hotend, Fan or Spindle, Fan
+//    #define FAN_PIN        RAMPS_D8_PIN
+//  #elif ENABLED(IS_RAMPS_EEB)                         // Hotend, Hotend, Bed
+//    #define FAN_PIN         4   // IO pin. Buffer needed
+//  #else                                               // Non-specific are "EFB" (i.e., "EFBF" or "EFBE")
+//    #define FAN_PIN        RAMPS_D9_PIN
+//  #endif
+//#endif
 
 //
 // Misc. Functions
@@ -473,7 +474,9 @@
 
       #define BTN_ENC           35
       #define SD_DETECT_PIN     -1  // UPDATE
-      #define KILL_PIN          41
+      #ifndef KILL_PIN
+        #define KILL_PIN          41
+      #endif
 
       #if ENABLED(BQ_LCD_SMART_CONTROLLER)
         #define LCD_BACKLIGHT_PIN 39
