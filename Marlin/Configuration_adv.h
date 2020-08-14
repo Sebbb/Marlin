@@ -1089,7 +1089,7 @@
 //#define LCD_SHOW_E_TOTAL
 
 #if ENABLED(SHOW_BOOTSCREEN)
-  #define BOOTSCREEN_TIMEOUT 4000        // (ms) Total Duration to display the boot screen(s)
+  #define BOOTSCREEN_TIMEOUT 1000        // (ms) Total Duration to display the boot screen(s)
 #endif
 
 #if HAS_GRAPHICAL_LCD && EITHER(SDSUPPORT, LCD_SET_PROGRESS_MANUALLY)
@@ -1368,15 +1368,15 @@
   //#define STATUS_HOTEND_NUMBERLESS  // Use plain hotend icons instead of numbered ones (with 2+ hotends)
   #define STATUS_HOTEND_INVERTED      // Show solid nozzle bitmaps when heating (Requires STATUS_HOTEND_ANIM)
   #define STATUS_HOTEND_ANIM          // Use a second bitmap to indicate hotend heating
-  #define STATUS_BED_ANIM             // Use a second bitmap to indicate bed heating
-  #define STATUS_CHAMBER_ANIM         // Use a second bitmap to indicate chamber heating
-  //#define STATUS_CUTTER_ANIM        // Use a second bitmap to indicate spindle / laser active
+  //#define STATUS_BED_ANIM             // Use a second bitmap to indicate bed heating
+  //#define STATUS_CHAMBER_ANIM         // Use a second bitmap to indicate chamber heating
+  #define STATUS_CUTTER_ANIM        // Use a second bitmap to indicate spindle / laser active
   //#define STATUS_ALT_BED_BITMAP     // Use the alternative bed bitmap
   //#define STATUS_ALT_FAN_BITMAP     // Use the alternative fan bitmap
   //#define STATUS_FAN_FRAMES 3       // :[0,1,2,3,4] Number of fan animation frames
   //#define STATUS_HEAT_PERCENT       // Show heating in a progress bar
   //#define BOOT_MARLIN_LOGO_SMALL    // Show a smaller Marlin logo on the Boot Screen (saving 399 bytes of flash)
-  //#define BOOT_MARLIN_LOGO_ANIMATED // Animated Marlin logo. Costs ~‭3260 (or ~940) bytes of PROGMEM.
+  #define BOOT_MARLIN_LOGO_ANIMATED // Animated Marlin logo. Costs ~‭3260 (or ~940) bytes of PROGMEM.
 
   // Frivolous Game Options
   //#define MARLIN_BRICKOUT
@@ -3052,7 +3052,7 @@
  * Enables G53 and G54-G59.3 commands to select coordinate systems
  * and G92.1 to reset the workspace to native machine space.
  */
-//#define CNC_COORDINATE_SYSTEMS
+#define CNC_COORDINATE_SYSTEMS
 
 /**
  * Auto-report temperatures with M155 S<seconds>
@@ -3064,7 +3064,7 @@
  */
 #define EXTENDED_CAPABILITIES_REPORT
 #if ENABLED(EXTENDED_CAPABILITIES_REPORT)
-  //#define M115_GEOMETRY_REPORT
+  #define M115_GEOMETRY_REPORT
 #endif
 
 /**
@@ -3147,7 +3147,7 @@
  * High feedrates may cause ringing and harm print quality.
  */
 //#define PAREN_COMMENTS      // Support for parentheses-delimited comments
-//#define GCODE_MOTION_MODES  // Remember the motion mode (G0 G1 G2 G3 G5 G38.X) and apply for X Y Z E F, etc.
+#define GCODE_MOTION_MODES  // Remember the motion mode (G0 G1 G2 G3 G5 G38.X) and apply for X Y Z E F, etc.
 
 // Enable and set a (default) feedrate for all G0 moves
 //#define G0_FEEDRATE 3000 // (mm/m)
