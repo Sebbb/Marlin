@@ -2939,7 +2939,7 @@
        * can't keep up with the processing demands of LASER_POWER_INLINE_TRAPEZOID_CONT.
        * Disable (or set to 0) to recalculate power on every stepper iteration.
        */
-      #define LASER_POWER_INLINE_TRAPEZOID_CONT_PER 10
+      //#define LASER_POWER_INLINE_TRAPEZOID_CONT_PER 10
 
       /**
        * Include laser power in G0/G1/G2/G3/G5 commands with the 'S' parameter
