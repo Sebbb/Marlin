@@ -2901,7 +2901,7 @@
     #define SPEED_POWER_INTERCEPT         0    // (%) 0-100 i.e., Minimum power percentage
     #define SPEED_POWER_MIN               0    // (%) 0-100
     #define SPEED_POWER_MAX             100    // (%) 0-100
-    #define SPEED_POWER_STARTUP           1    // (%) M3/M4 speed/power default (with no arguments)
+    #define SPEED_POWER_STARTUP           3    // (%) M3/M4 speed/power default (with no arguments)
 
     /**
      * Enable inline laser power to be handled in the planner / stepper routines.
@@ -2939,7 +2939,7 @@
        * can't keep up with the processing demands of LASER_POWER_INLINE_TRAPEZOID_CONT.
        * Disable (or set to 0) to recalculate power on every stepper iteration.
        */
-      //#define LASER_POWER_INLINE_TRAPEZOID_CONT_PER 10
+      #define LASER_POWER_INLINE_TRAPEZOID_CONT_PER 0
 
       /**
        * Include laser power in G0/G1/G2/G3/G5 commands with the 'S' parameter
@@ -2971,7 +2971,7 @@
        */
       // #define LASER_POWER_INLINE_CONTINUOUS
 
-    #else // LASER_POWER_INLINE
+    #else // end of LASER_POWER_INLINE
 
       #define SPINDLE_LASER_POWERUP_DELAY     50 // (ms) Delay to allow the spindle/laser to come up to speed/power
       #define SPINDLE_LASER_POWERDOWN_DELAY   50 // (ms) Delay to allow the spindle to stop
