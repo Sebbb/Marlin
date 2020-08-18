@@ -1,3 +1,22 @@
+# About this repo
+
+This is adjusted for the Creality CR-10S printer.
+
+All code in bugfix-1.1 branches are for the Creality 2.1 stock board.
+All code in the bugfix-2.0 branches are for the BTT SKR 1.4 Turbo board
+
+All -print branches include:
+- Petsfang bullseye support
+- BLtouch support
+
+-laser and -cnc branches include adjustments 
+
+*Attention: bugfix 2.x branches have a different pin layout: X and Y is swapped, E2 is used as Z2 with Z leveling support*
+
+-------------------------------------
+
+
+
 # Marlin 3D Printer Firmware
 
 ![GitHub](https://img.shields.io/github/license/marlinfirmware/marlin.svg)
