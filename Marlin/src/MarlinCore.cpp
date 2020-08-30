@@ -365,7 +365,7 @@ void disable_e_stepper(const uint8_t e) {
 void disable_all_steppers() {
   DISABLE_AXIS_X();
   DISABLE_AXIS_Y();
-  DISABLE_AXIS_Z();
+  // DISABLE_AXIS_Z();
   disable_e_steppers();
 }
 
