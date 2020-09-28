@@ -22,10 +22,10 @@
 #pragma once
 
 #ifdef SKR_HAS_LPC1769
-  #ifndef MCU_LPC1769
+  #if NOT_TARGET(MCU_LPC1769)
     #error "Oops! Make sure you have the LPC1769 environment selected in your IDE."
   #endif
-#elif !defined(MCU_LPC1768)
+#elif NOT_TARGET(MCU_LPC1768)
   #error "Oops! Make sure you have the LPC1768 environment selected in your IDE."
 #endif
 
@@ -71,7 +71,7 @@
 // Heaters / Fans
 //
 #ifndef HEATER_0_PIN
-  #define HEATER_0_PIN                     P2_07
+  #define HEATER_0_PIN                     P2_05 // Swapped with HEATER_BED_PIN
 #endif
 #if HOTENDS == 1
   #ifndef FAN1_PIN
@@ -86,13 +86,13 @@
 //  #define FAN_PIN                          P2_03
 #endif
 #ifndef HEATER_BED_PIN
-//  #define HEATER_BED_PIN                   P2_05
+//  #define HEATER_BED_PIN                   P2_07
 #endif
 
 //
 // LCD / Controller
 //
-#if HAS_SPI_LCD
+#if HAS_WIRED_LCD
   #define BEEPER_PIN                       P1_30  // (37) not 5V tolerant
 #endif
 
