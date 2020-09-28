@@ -1579,10 +1579,7 @@ void homeaxis(const AxisEnum axis) {
       do_homing_move(axis, -ABS(backoff[axis]) * axis_home_dir, homing_feedrate(axis));
   #endif
 
-#ifdef NO_Z_HOMING
-  if (axis != Z_AXIS)
-#endif
-    do_homing_move(axis, 1.5f * max_length(TERN(DELTA, Z_AXIS, axis)) * axis_home_dir);
+  do_homing_move(axis, 1.5f * max_length(TERN(DELTA, Z_AXIS, axis)) * axis_home_dir);
 
   #if BOTH(HOMING_Z_WITH_PROBE, BLTOUCH) && DISABLED(BLTOUCH_HS_MODE)
     if (axis == Z_AXIS) bltouch.stow(); // Intermediate STOW (in LOW SPEED MODE)
@@ -1595,35 +1592,28 @@ void homeaxis(const AxisEnum axis) {
   );
 
   // If a second homing move is configured...
+  if (bump) {
+    // Move away from the endstop by the axis HOMING_BUMP_MM
+    if (DEBUGGING(LEVELING)) DEBUG_ECHOLNPGM("Move Away:");
+    do_homing_move(axis, -bump
+      #if HOMING_Z_WITH_PROBE
+        , MMM_TO_MMS(axis == Z_AXIS ? Z_PROBE_SPEED_FAST : 0)
+      #endif
+    );
 
-  #ifdef NO_Z_HOMING
-  if(bump) {
-      //current_position.z = 0;
-      //line_to_current_position(homing_feedrate(Z_AXIS));
-    }
-  #else
-    if (bump) {
-      // Move away from the endstop by the axis HOMING_BUMP_MM
-      if (DEBUGGING(LEVELING)) DEBUG_ECHOLNPGM("Move Away:");
-      do_homing_move(axis, -bump
-        #if HOMING_Z_WITH_PROBE
-          , MMM_TO_MMS(axis == Z_AXIS ? Z_PROBE_SPEED_FAST : 0)
-        #endif
-      );
-
-      #if ENABLED(DETECT_BROKEN_ENDSTOP)
-        // Check for a broken endstop
-        EndstopEnum es;
-        switch (axis) {
-          default:
-          case X_AXIS: es = X_ENDSTOP; break;
-          case Y_AXIS: es = Y_ENDSTOP; break;
-          case Z_AXIS: es = Z_ENDSTOP; break;
-        }
-        if (TEST(endstops.state(), es)) {
-          SERIAL_ECHO_MSG("Bad ", axis_codes[axis], " Endstop?");
-          kill(GET_TEXT(MSG_KILL_HOMING_FAILED));
-        }
+    #if ENABLED(DETECT_BROKEN_ENDSTOP)
+      // Check for a broken endstop
+      EndstopEnum es;
+      switch (axis) {
+        default:
+        case X_AXIS: es = X_ENDSTOP; break;
+        case Y_AXIS: es = Y_ENDSTOP; break;
+        case Z_AXIS: es = Z_ENDSTOP; break;
+      }
+      if (TEST(endstops.state(), es)) {
+        SERIAL_ECHO_MSG("Bad ", axis_codes[axis], " Endstop?");
+        kill(GET_TEXT(MSG_KILL_HOMING_FAILED));
+      }
     #endif
 
     // Slow move towards endstop until triggered
@@ -1639,7 +1629,6 @@ void homeaxis(const AxisEnum axis) {
       if (axis == Z_AXIS) bltouch.stow(); // The final STOW
     #endif
   }
-  #endif
 
   #if HAS_EXTRA_ENDSTOPS
     const bool pos_dir = axis_home_dir > 0;
