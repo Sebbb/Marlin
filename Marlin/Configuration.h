@@ -488,17 +488,22 @@
   //#define PID_AUTOTUNE_MENU     // Add PID auto-tuning to the "Advanced Settings" menu. (~250 bytes of PROGMEM)
   //#define PID_PARAMS_PER_HOTEND // Uses separate PID parameters for each extruder (useful for mismatched extruders)
                                   // Set/get with gcode: M301 E[extruder number, 0-2]
-  #if ENABLED(PID_PARAMS_PER_HOTEND)
-    // Specify between 1 and HOTENDS values per array.
-    // If fewer than EXTRUDER values are provided, the last element will be repeated.
-    #define DEFAULT_Kp_LIST {  22.20,  20.0 }
-    #define DEFAULT_Ki_LIST {   1.08,   1.0 }
-    #define DEFAULT_Kd_LIST { 114.00, 112.0 }
-  #else
-    #define DEFAULT_Kp  22.20
-    #define DEFAULT_Ki   1.08
-    #define DEFAULT_Kd 114.00
-  #endif
+//  #if ENABLED(PID_PARAMS_PER_HOTEND)
+//    // Specify between 1 and HOTENDS values per array.
+//    // If fewer than EXTRUDER values are provided, the last element will be repeated.
+//    #define DEFAULT_Kp_LIST {  22.20,  20.0 }
+//    #define DEFAULT_Ki_LIST {   1.08,   1.0 }
+//    #define DEFAULT_Kd_LIST { 114.00, 112.0 }
+//  #else
+//    #define DEFAULT_Kp  22.20
+//    #define DEFAULT_Ki   1.08
+//    #define DEFAULT_Kd 114.00
+//  #endif
+
+  #define DEFAULT_Kp 32.34
+  #define DEFAULT_Ki 6.43
+  #define DEFAULT_Kd 40.67
+
 #endif // PIDTEMP
 
 //===========================================================================
@@ -770,7 +775,7 @@
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
-  #define MAX_ACCEL_EDIT_VALUES       { 6000, 6000, 200, 20000 } // ...or, set your own edit limits
+  #define MAX_ACCEL_EDIT_VALUES       { 6000, 6000, 200, 5000 } // ...or, set your own edit limits
 #endif
 
 /**
@@ -995,7 +1000,7 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { -40, 10, -1.75 }
+#define NOZZLE_TO_PROBE_OFFSET { -40, 10, -2.75 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
