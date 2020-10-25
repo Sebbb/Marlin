@@ -100,7 +100,7 @@
 // Filament Runout Sensor
 //
 #define FIL_RUNOUT_PIN                     P1_26  // E0DET
-#define FIL_RUNOUT2_PIN                    P1_25  // E1DET
+//#define FIL_RUNOUT2_PIN                    P1_25  // E1DET
 
 //
 // Power Supply Control
@@ -133,12 +133,22 @@
   #define Y_CS_PIN                         P1_08 // P1_09
 #endif
 
-#define Z_STEP_PIN                         P0_19 // P0_22
-#define Z_DIR_PIN                          P0_20 // P2_11
-#define Z_ENABLE_PIN                       P2_08 // P0_21
-#ifndef Z_CS_PIN
-  #define Z_CS_PIN                         P1_09 // P1_08
+#define Z2_STEP_PIN                         P0_19 // P0_22
+#define Z2_DIR_PIN                          P0_20 // P2_11
+#define Z2_ENABLE_PIN                       P2_08 // P0_21
+#ifndef Z2_CS_PIN
+  #define Z2_CS_PIN                         P1_09 // P1_08
 #endif
+
+#define Z_STEP_PIN                        P1_15
+#define Z_DIR_PIN                         P1_14
+#define Z_ENABLE_PIN                      P1_16
+#ifndef Z_CS_PIN
+  #define Z_CS_PIN                        P1_01
+#endif
+
+
+
 
 #define E0_STEP_PIN                        P2_13
 #define E0_DIR_PIN                         P0_11
@@ -155,14 +165,6 @@
   #define E1_CS_PIN                        P1_01
 #endif
 */
-
-#define Z2_STEP_PIN                        P1_15
-#define Z2_DIR_PIN                         P1_14
-#define Z2_ENABLE_PIN                      P1_16
-#ifndef Z2_CS_PIN
-  #define Z2_CS_PIN                        P1_01
-#endif
-
 
 #define TEMP_1_PIN                      P0_23_A0  // A0 (T0) - (67) - TEMP_1_PIN
 #define TEMP_BED_PIN                    P0_25_A2  // A2 (T2) - (69) - TEMP_BED_PIN
