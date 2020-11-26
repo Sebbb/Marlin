@@ -380,6 +380,12 @@ void GcodeSuite::G34() {
     else {
       SERIAL_ECHOLNPAIR("Did ", int(iteration + (iteration != z_auto_align_iterations)), " of ", int(z_auto_align_iterations));
       SERIAL_ECHOLNPAIR_F("Accuracy: ", z_maxdiff);
+
+      #if HAS_DISPLAY
+        char str[32];
+        sprintf_P(str, "G34 %d/%d Accuracy: %1.2f", iteration, z_auto_align_iterations, z_maxdiff);
+        ui.set_status(str);
+      #endif
     }
 
     // Stow the probe, as the last call to probe.probe_at_point(...) left
