@@ -411,24 +411,9 @@ void GcodeSuite::G34() {
         SERIAL_ECHOLNPAIR_F("Accuracy: ", z_maxdiff);
       }
 
-<<<<<<< HEAD
-    if (err_break)
-      SERIAL_ECHOLNPGM("G34 aborted.");
-    else {
-      SERIAL_ECHOLNPAIR("Did ", int(iteration + (iteration != z_auto_align_iterations)), " of ", int(z_auto_align_iterations));
-      SERIAL_ECHOLNPAIR_F("Accuracy: ", z_maxdiff);
-
-      #if HAS_DISPLAY
-        char str[32];
-        sprintf_P(str, "G34 %d/%d Accuracy: %1.2f", iteration, z_auto_align_iterations, z_maxdiff);
-        ui.set_status(str);
-      #endif
-    }
-=======
       // Stow the probe, as the last call to probe.probe_at_point(...) left
       // the probe deployed if it was successful.
       probe.stow();
->>>>>>> 58ac815822b4c04f29b66ddf076156e6b4994749
 
       #if ENABLED(HOME_AFTER_G34)
         // After this operation the z position needs correction
