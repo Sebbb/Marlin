@@ -673,7 +673,7 @@
  *          TMC5130, TMC5130_STANDALONE, TMC5160, TMC5160_STANDALONE
  * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'L6470', 'L6474', 'POWERSTEP01', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC2209', 'TMC2209_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
  */
-#define X_DRIVER_TYPE  TMC2209
+#define X_DRIVER_TYPE  A4988
 #define Y_DRIVER_TYPE  TMC2209
 #define Z_DRIVER_TYPE  TMC2209
 //#define X2_DRIVER_TYPE A4988
@@ -737,10 +737,15 @@
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
 
-#define MICROSTEP_MULTIPLIER_XY 4
 
-// #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80*MICROSTEP_MULTIPLIER_XY, 80*MICROSTEP_MULTIPLIER_XY, 400, 95 }
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80*MICROSTEP_MULTIPLIER_XY, 80*MICROSTEP_MULTIPLIER_XY, 400, 284 } // e: 32 microsteps
+
+// tmcblabla:
+#define MICROSTEP_MULTIPLIER_XY 4
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 102.40*2, 80*MICROSTEP_MULTIPLIER_XY, 400, 284 } // e: 32 microsteps
+// 102.40 -  microstep 16
+// 204.80 -  microstep 32
+// for 16 microsteps: 40 mm per turn, 4096 pulses per turn
+// 4096 / 40 = 102.40
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -1176,7 +1181,7 @@
 #if ENABLED(FILAMENT_RUNOUT_SENSOR)
   #define FIL_RUNOUT_ENABLED_DEFAULT true // Enable the sensor on startup. Override with M412 followed by M500.
   #define NUM_RUNOUT_SENSORS   1          // Number of sensors, up to one per extruder. Define a FIL_RUNOUT#_PIN for each.
-  #define FIL_RUNOUT_STATE     HIGH        // Pin state indicating that filament is NOT present.
+  #define FIL_RUNOUT_STATE     LOW        // Pin state indicating that filament is NOT present.
   #define FIL_RUNOUT_PULLUP               // Use internal pullup for filament runout pins.
   //#define FIL_RUNOUT_PULLDOWN           // Use internal pulldown for filament runout pins.
 
@@ -1531,7 +1536,7 @@
 
 #if ENABLED(NOZZLE_PARK_FEATURE)
   // Specify a park position as { X, Y, Z_raise }
-  #define NOZZLE_PARK_POINT { (X_MIN_POS + 10), (Y_MAX_POS - 10), 20 }
+  #define NOZZLE_PARK_POINT { (X_MIN_POS + 10), (Y_MIN_POS), 40 }
   //#define NOZZLE_PARK_X_ONLY          // X move only is required to park
   //#define NOZZLE_PARK_Y_ONLY          // Y move only is required to park
   #define NOZZLE_PARK_Z_RAISE_MIN   2   // (mm) Always raise Z by at least this distance
