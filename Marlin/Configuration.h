@@ -415,7 +415,7 @@
 #define TEMP_SENSOR_5 0
 #define TEMP_SENSOR_6 0
 #define TEMP_SENSOR_7 0
-#define TEMP_SENSOR_BED 13
+#define TEMP_SENSOR_BED 11
 #define TEMP_SENSOR_PROBE 0
 #define TEMP_SENSOR_CHAMBER 0
 
@@ -457,7 +457,7 @@
 // Above this temperature the heater will be switched off.
 // This can protect components from overheating, but NOT from shorts and failures.
 // (Use MINTEMP for thermistor short/failure protection.)
-#define HEATER_0_MAXTEMP 275
+#define HEATER_0_MAXTEMP 300
 #define HEATER_1_MAXTEMP 275
 #define HEATER_2_MAXTEMP 275
 #define HEATER_3_MAXTEMP 275
@@ -465,7 +465,7 @@
 #define HEATER_5_MAXTEMP 275
 #define HEATER_6_MAXTEMP 275
 #define HEATER_7_MAXTEMP 275
-#define BED_MAXTEMP      130
+#define BED_MAXTEMP      140
 
 //===========================================================================
 //============================= PID Settings ================================
@@ -495,9 +495,10 @@
 //    #define DEFAULT_Kd 114.00
 //  #endif
 
-  #define DEFAULT_Kp 32.34
-  #define DEFAULT_Ki 6.43
-  #define DEFAULT_Kd 40.67
+  // 70W Hotend:
+  #define DEFAULT_Kp 27.14
+  #define DEFAULT_Ki 3.70
+  #define DEFAULT_Kd 49.74
 
 #endif // PIDTEMP
 
@@ -540,10 +541,13 @@
   //#define DEFAULT_bedKi .023
   //#define DEFAULT_bedKd 305.4
 
-  //750W Keenovo silicone heater into .25 inch aluminum tooling plate - https://forum.raise3d.com/viewtopic.php?t=11269
-  #define DEFAULT_bedKp 134.84
-  #define DEFAULT_bedKi 25.72
-  #define DEFAULT_bedKd 176.74
+  //750W Keenovo silicone heater
+  #define DEFAULT_bedKp 54.32
+  #define DEFAULT_bedKi 7.25
+  #define DEFAULT_bedKd 271.53
+
+
+
 
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED
@@ -1144,7 +1148,7 @@
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
 #define X_MAX_POS 315 // 15mm Extra space on the right end
-#define Y_MAX_POS 300
+#define Y_MAX_POS 305
 #define Z_MAX_POS 400
 
 /**
