@@ -34,7 +34,7 @@
 #endif
 
 #ifndef DEFAULT_SOURCE_CODE_URL
-  #define DEFAULT_SOURCE_CODE_URL "https://3dprint.elettronicain.it/"
+  #define DEFAULT_SOURCE_CODE_URL "3dprint.elettronicain.it"
 #endif
 
 //
@@ -144,7 +144,7 @@
 #undef SPINDLE_DIR_PIN
 
 #if HAS_CUTTER
-  #if !EXTRUDERS
+  #if !HAS_EXTRUDERS
     #undef E0_DIR_PIN
     #undef E0_ENABLE_PIN
     #undef E0_STEP_PIN
