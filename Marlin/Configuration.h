@@ -407,7 +407,7 @@
  *   998 : Dummy Table that ALWAYS reads 25°C or the temperature defined below.
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
-#define TEMP_SENSOR_0 1
+#define TEMP_SENSOR_0 13
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
@@ -496,9 +496,9 @@
 //  #endif
 
   // 70W Hotend:
-  #define DEFAULT_Kp 27.14
-  #define DEFAULT_Ki 3.70
-  #define DEFAULT_Kd 49.74
+  #define DEFAULT_Kp 21.55
+  #define DEFAULT_Ki 2.21
+  #define DEFAULT_Kd 52.49
 
 #endif // PIDTEMP
 
